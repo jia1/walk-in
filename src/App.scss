@@ -1,0 +1,24 @@
+$drawerWidth: 240px;
+
+.App {
+  display: flex;
+
+  .AppBar {
+    z-index: 1201;
+  }
+
+  .Drawer {
+    width: $drawerWidth;
+    flex-shrink: 0;
+    top: 100px;
+  }
+
+  .DrawerPaper {
+    width: $drawerWidth;
+  }
+
+  .Content {
+    flex-grow: 1;
+    padding: 0px;
+  }
+}
