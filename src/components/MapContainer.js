@@ -21,13 +21,14 @@ class MapContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      position: [51.505, -0.09]
+      position: [51.505, -0.09],
+      watchId: -1
     };
   }
 
   componentDidMount() {
     if (navigator.geolocation) {
-      navigator.geolocation.watchPosition((position) => {
+      const watchId = navigator.geolocation.watchPosition((position) => {
         this.setState({
           position: [
             position.coords.latitude,
@@ -35,6 +36,15 @@ class MapContainer extends React.Component {
           ]
         });
       });
+      this.setState({
+        watchId
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    if (navigator.geolocation) {
+      navigator.geolocation.clearWatch(this.state.watchId);
     }
   }
 
