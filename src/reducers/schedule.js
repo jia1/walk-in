@@ -1,24 +1,18 @@
+// Cannot use !==
 const schedule = (state = [], action) => {
+  const interviewId = action.interviewId;
+  const slotId = action.slotId;
   switch (action.type) {
     case 'MAKE_INTERVIEW_APPOINTMENT':
-      const interviewId = action.interviewId;
-      const slotId = action.slotId;
-      let schedule = state;
-      if (schedule.find((s) => s.slotId === slotId)) {
-        return schedule;
+      if (state.find((s) => s.slotId == slotId)) {
+        return state;
       }
-      schedule.push({
+      return state.concat({
         interviewId,
         slotId
       });
-      return schedule;
-      /*
-      const normState = utils.toNorm(state);
-      return {
-        ...state,
-        ...normState.entities
-      };
-      */
+    case 'CANCEL_INTERVIEW_APPOINTMENT':
+      return state.filter((s, i) => s.slotId != slotId);
     default:
       return state;
   }

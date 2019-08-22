@@ -28,7 +28,7 @@ class MapWrapper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: 10,
+      userId: 1,
       position: [51.505, -0.09],
       watchId: -1
     };

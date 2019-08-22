@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Button,
   Paper,
   Table,
   TableBody,
@@ -16,7 +17,6 @@ class Schedule extends React.Component {
   constructor(props) {
     super(props);
     const normSubState = utils.toNorm(this.props.store).entities;
-    console.log(normSubState);
     this.state = {
       interviews: normSubState.interviews,
       slots: normSubState.slots,
@@ -33,6 +33,7 @@ class Schedule extends React.Component {
               <TableRow>
                 <TableCell>When</TableCell>
                 <TableCell>Name of interview</TableCell>
+                <TableCell>Actions</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -45,7 +46,21 @@ class Schedule extends React.Component {
                       <TableCell component="th" scope="row">
                         {utils.formatDateTime(slot.startDateTime)}
                       </TableCell>
-                      <TableCell>{interview.title}</TableCell>
+                      <TableCell>
+                        {interview.title}
+                      </TableCell>
+                      <TableCell>
+                        <Button
+                          fullWidth
+                          variant="contained"
+                          color="primary"
+                          onClick={() => {
+                            this.props.onCancelInterviewAppointmentClick(interview.id, slot.id, this.state.userId);
+                          }}
+                        >
+                          Cancel
+                        </Button>
+                      </TableCell>
                     </TableRow>
                   );
                 })
