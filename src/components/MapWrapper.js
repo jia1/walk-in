@@ -2,8 +2,12 @@ import React from 'react';
 import L from 'leaflet';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import {
-  Button
+  Button,
+  Grid,
+  Typography
 } from '@material-ui/core';
+
+import utils from '../utils';
 
 import 'leaflet/dist/leaflet.css';
 import './MapWrapper.scss';
@@ -66,7 +70,6 @@ class MapWrapper extends React.Component {
             attribution={mapAttribution}
           />
           <Marker position={this.state.position}>
-            <Popup>You are here.</Popup>
           </Marker>
           {
             this.props.interviews.map((interview) => {
@@ -76,17 +79,46 @@ class MapWrapper extends React.Component {
                   position={[interview.latitude, interview.longitude]}
                 >
                   <Popup>
-                    <p>{interview.title}</p>
-                    <p>{interview.description}</p>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={() => {
-                        this.props.onMakeInterviewAppointmentClick(interview.id, this.state.userId);
-                      }}
+                    <Typography variant="h6">
+                      {interview.title}
+                    </Typography>
+                    {`${utils.truncate(interview.description, 200)}...`}
+                    <p><strong>
+                      {
+                        interview.schedule &&
+                        `${utils.formatDateTime(interview.schedule[0].startDateTime)} to ${utils.formatTime(interview.schedule[0].endDateTime)}`
+                      }
+                    </strong></p>
+                    <Grid container
+                      direction="column"
+                      justify="space-between"
+                      spacing={1}
                     >
-                      Make an interview appointment
-                    </Button>
+                      <Grid item>
+                        <Button
+                          fullWidth
+                          variant="contained"
+                          color="primary"
+                          onClick={() => {
+                            console.log('User wants more info.');
+                          }}
+                        >
+                          More information / interviews
+                        </Button>
+                      </Grid>
+                      <Grid item>
+                        <Button
+                          fullWidth
+                          variant="contained"
+                          color="primary"
+                          onClick={() => {
+                            this.props.onMakeInterviewAppointmentClick(interview.id, this.state.userId);
+                          }}
+                        >
+                          Make an interview appointment
+                        </Button>
+                      </Grid>
+                    </Grid>
                   </Popup>
                 </Marker>
               );
