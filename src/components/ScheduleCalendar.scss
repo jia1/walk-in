@@ -1,0 +1,32 @@
+$color-material-primary: #3f51b5;
+$color-material-primary-light: #e8eaf6;
+$color-material-primary-dark: #002984;
+
+.ScheduleCalendar {
+  .rbc-day-slot .rbc-events-container {
+    margin-right: 0;
+  }
+
+  .rbc-day-slot .rbc-event {
+    background-color: $color-material-primary;
+  }
+
+  .rbc-today {
+    background-color: $color-material-primary-light;
+  }
+
+  .rbc-toolbar button {
+    background-color: $color-material-primary;
+    border-radius: 0;
+    color: white;
+  }
+
+  .rbc-toolbar button:active, .rbc-toolbar button.rbc-active {
+    background-color: $color-material-primary-dark;
+    color: white;
+  }
+
+  button:focus {
+    outline: 0 !important;
+  }
+}

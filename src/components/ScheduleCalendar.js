@@ -1,4 +1,8 @@
-// Helpful link: https://github.com/intljusticemission/react-big-calendar/issues/1363
+/*
+  Helpful links:
+  https://github.com/intljusticemission/react-big-calendar/issues/1363
+  https://github.com/intljusticemission/react-big-calendar/issues/550
+*/
 import React from 'react';
 import {
   Calendar,
@@ -13,6 +17,7 @@ import {
 import { spacing } from '@material-ui/system';
 
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import './ScheduleCalendar.scss';
 
 const localizer = momentLocalizer(moment);
 const views = Object.values(Views);
