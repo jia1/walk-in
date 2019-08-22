@@ -32,6 +32,7 @@ import {
   HelpPage
 } from './pages';
 import ScheduleDetails from './components/ScheduleDetails';
+import Teapot from './components/Teapot';
 
 import './App.scss';
 
@@ -111,7 +112,7 @@ const App = () => {
           <Route exact path="/schedule" component={SchedulePage} />
           <Route path="/schedule/:id" component={ScheduleDetails} />
           <Route path="/help" component={HelpPage} />
-          <Route path="/logout" component={IndexPage} />
+          <Route path="/logout" component={Teapot} />
         </Container>
       </main>
       </Router>
