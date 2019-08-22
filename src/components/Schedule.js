@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Button,
+  ButtonGroup,
   Paper,
   Table,
   TableBody,
@@ -32,7 +33,7 @@ class Schedule extends React.Component {
             <TableHead>
               <TableRow>
                 <TableCell>When</TableCell>
-                <TableCell>Name of interview</TableCell>
+                <TableCell>Interview</TableCell>
                 <TableCell>Actions</TableCell>
               </TableRow>
             </TableHead>
@@ -50,16 +51,25 @@ class Schedule extends React.Component {
                         {interview.title}
                       </TableCell>
                       <TableCell>
-                        <Button
+                        <ButtonGroup
                           fullWidth
                           variant="contained"
                           color="primary"
-                          onClick={() => {
-                            this.props.onCancelInterviewAppointmentClick(interview.id, slot.id, this.state.userId);
-                          }}
                         >
-                          Cancel
-                        </Button>
+                          <Button
+                            onClick={() => {
+                            }}
+                          >
+                            View details
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              this.props.onCancelInterviewAppointmentClick(interview.id, slot.id, this.state.userId);
+                            }}
+                          >
+                            Cancel interview
+                          </Button>
+                        </ButtonGroup>
                       </TableCell>
                     </TableRow>
                   );

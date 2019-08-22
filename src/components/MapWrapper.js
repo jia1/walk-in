@@ -1,9 +1,16 @@
 import React from 'react';
 import L from 'leaflet';
-import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
+import {
+  Map,
+  Marker,
+  Popup,
+  TileLayer,
+  Tooltip
+} from 'react-leaflet';
 import {
   Button,
   Grid,
+  Snackbar,
   Typography
 } from '@material-ui/core';
 
@@ -13,23 +20,38 @@ import 'leaflet/dist/leaflet.css';
 import './MapWrapper.scss';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import redLeafletIcon from '../assets/markers/leaf-red.png';
+import leafletShadowIcon from '../assets/markers/leaf-shadow.png';
 
 let DefaultIcon = L.icon({
     iconUrl: icon,
     shadowUrl: iconShadow
 });
 
+let RedLeafletIcon = L.icon({
+  iconUrl: redLeafletIcon,
+  shadowUrl: leafletShadowIcon,
+  iconSize: [38, 95],
+	shadowSize: [50, 64],
+	iconAnchor: [22, 94],
+	shadowAnchor: [4, 62],
+	popupAnchor: [-3, -76]
+});
+
 L.Marker.prototype.options.icon = DefaultIcon;
 
-const mapUrl = 'https://maps-{s}.onemap.sg/v3/Default/{z}/{x}/{y}.png';
-const mapAttribution = '<img src="https://docs.onemap.sg/maps/images/oneMap64-01.png" style="height:20px;width:20px;"/> New OneMap | Map data &copy; contributors, <a href="http://SLA.gov.sg">Singapore Land Authority</a>';
+const mapUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+const mapAttribution = '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors';
+// const mapUrl = 'https://maps-{s}.onemap.sg/v3/Default/{z}/{x}/{y}.png';
+// const mapAttribution = '<img src="https://docs.onemap.sg/maps/images/oneMap64-01.png" style="height:20px;width:20px;"/> New OneMap | Map data &copy; contributors, <a href="http://SLA.gov.sg">Singapore Land Authority</a>';
 
 class MapWrapper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      open: false,
       userId: 1,
-      position: [51.505, -0.09],
+      position: [1.290270, 103.851959],
       watchId: -1
     };
   }
@@ -52,14 +74,42 @@ class MapWrapper extends React.Component {
     }
   }
 
-  _logPosition() {
-    // console.log(this.state.position);
-  }
-
   componentWillUnmount() {
     if (navigator.geolocation) {
       navigator.geolocation.clearWatch(this.state.watchId);
     }
+  }
+
+  _handleSnackbarClose() {
+    this.setState({
+      ...this.state,
+      open: false
+    });
+  }
+
+  _logPosition() {
+    // console.log(this.state.position);
+  }
+
+  _scheduleInterview(interview) {
+    this.props.onMakeInterviewAppointmentClick(
+      interview.id,
+      interview.slots[0].id,
+      this.state.userId
+    );
+    // Oops, no promise!
+    this.setState({
+      open: true
+    }, () => {
+      setTimeout(() => {
+        this.setState({
+          open: false
+        });
+      }, 3000);
+    });
+  }
+
+  _showInterviewDetails(interview) {
   }
 
   render() {
@@ -75,7 +125,13 @@ class MapWrapper extends React.Component {
             url={mapUrl}
             attribution={mapAttribution}
           />
-          <Marker position={this.state.position}>
+          <Marker
+            icon={RedLeafletIcon}
+            position={this.state.position}
+          >
+            <Tooltip>
+              You are here.
+            </Tooltip>
           </Marker>
           {
             this.props.interviews.map((interview) => {
@@ -106,7 +162,7 @@ class MapWrapper extends React.Component {
                           variant="contained"
                           color="primary"
                           onClick={() => {
-                            console.log('User wants more info.');
+                            this._showInterviewDetails(interview);
                           }}
                         >
                           More information / interviews
@@ -118,7 +174,7 @@ class MapWrapper extends React.Component {
                           variant="contained"
                           color="primary"
                           onClick={() => {
-                            this.props.onMakeInterviewAppointmentClick(interview.id, interview.slots[0].id, this.state.userId);
+                            this._scheduleInterview(interview);
                           }}
                         >
                           Make an interview appointment
@@ -126,11 +182,28 @@ class MapWrapper extends React.Component {
                       </Grid>
                     </Grid>
                   </Popup>
+                  <Tooltip>
+                    Interview here. Click to view.
+                  </Tooltip>
                 </Marker>
               );
             })
           }
         </Map>
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center'
+          }}
+          open={this.state.open}
+          onClose={() => {
+            this._handleSnackbarClose();
+          }}
+          ContentProps={{
+            'aria-describedby': 'schedule-success-message',
+          }}
+          message={<span id="schedule-success-message">Interview scheduled.</span>}
+        />
       </div>
     );
   }

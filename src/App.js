@@ -8,12 +8,12 @@ import {
 import {
   IndexPage,
   MapPage,
-  SchedulePage
+  SchedulePage,
+  HelpPage
 } from './pages';
 
 import {
   AppBar,
-  Button,
   Container,
   CssBaseline,
   Divider,
@@ -23,8 +23,7 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  Toolbar,
-  Typography
+  Toolbar
 } from '@material-ui/core';
 import {
   Home as HomeIcon,
@@ -109,7 +108,7 @@ const App = () => {
           <Route exact path="/" component={IndexPage} />
           <Route path="/map" component={MapPage} />
           <Route path="/schedule" component={SchedulePage} />
-          <Route path="/help" component={IndexPage} />
+          <Route path="/help" component={HelpPage} />
           <Route path="/logout" component={IndexPage} />
         </Container>
       </main>
