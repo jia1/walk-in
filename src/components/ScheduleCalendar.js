@@ -6,7 +6,6 @@
 import React from 'react';
 import {
   Calendar,
-  Views,
   momentLocalizer
 } from 'react-big-calendar';
 import moment from 'moment';
@@ -14,19 +13,17 @@ import {
   Box,
   Paper
 } from '@material-ui/core';
-import { spacing } from '@material-ui/system';
 
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import './ScheduleCalendar.scss';
 
 const localizer = momentLocalizer(moment);
-const views = Object.values(Views);
 
 const ScheduleCalendar = ({ events }) => {
   return (
     <div className="ScheduleCalendar">
       <Paper>
-        <Box p={3}>
+        <Box p={4}>
           <Calendar
             localizer={localizer}
             events={events}
