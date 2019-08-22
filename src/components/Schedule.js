@@ -1,16 +1,15 @@
 import React from 'react';
 import {
-  Button,
-  ButtonGroup,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow
+  Tab,
+  Tabs
 } from '@material-ui/core';
+import {
+  CalendarViewDay as CalendarViewDayIcon,
+  TableChart as TableChartIcon
+} from '@material-ui/icons';
 
-import utils from '../utils';
+import ScheduleTable from './ScheduleTable';
+import ScheduleCalendar from './ScheduleCalendar';
 
 import './Schedule.scss';
 
@@ -18,63 +17,52 @@ class Schedule extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: 1
+      userId: 1,
+      activeTabId: 0
     };
+  }
+
+  _switchTab(activeTabId) {
+    this.setState({
+      activeTabId
+    });
   }
 
   render() {
     return (
       <div className="Schedule">
-        <Paper>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>When</TableCell>
-                <TableCell>Interview</TableCell>
-                <TableCell>Actions</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {
-                this.props.schedule.map((s, i) => {
-                  const interview = this.props.interviews[s.interviewId];
-                  const slot = this.props.slots[s.slotId];
-                  return (
-                    <TableRow key={i}>
-                      <TableCell component="th" scope="row">
-                        {utils.formatDateTime(slot.startDateTime)}
-                      </TableCell>
-                      <TableCell>
-                        {interview.title}
-                      </TableCell>
-                      <TableCell>
-                        <ButtonGroup
-                          fullWidth
-                          variant="contained"
-                          color="primary"
-                        >
-                          <Button
-                            onClick={() => {
-                            }}
-                          >
-                            View details
-                          </Button>
-                          <Button
-                            onClick={() => {
-                              this.props.onCancelInterviewAppointmentClick(interview.id, slot.id, this.state.userId);
-                            }}
-                          >
-                            Cancel interview
-                          </Button>
-                        </ButtonGroup>
-                      </TableCell>
-                    </TableRow>
-                  );
-                })
-              }
-            </TableBody>
-          </Table>
-        </Paper>
+        <Tabs
+          variant="fullWidth"
+          indicatorColor="primary"
+          onChange={(e, v) => {
+            this._switchTab(v);
+          }}
+          value={this.state.activeTabId}
+        >
+          <Tab
+            label="TABLE VIEW"
+            icon={<TableChartIcon />}
+            value={0}
+          />
+          <Tab
+            label="CALENDAR VIEW"
+            icon={<CalendarViewDayIcon />}
+            value={1}
+          />
+        </Tabs>
+        <div className={this.state.activeTabId == 0 ? '' : 'hidden'}>
+          <ScheduleTable
+            userId={this.state.userId}
+            interviews={this.props.interviews}
+            slots={this.props.slots}
+            schedule={this.props.schedule}
+            onCancelInterviewAppointmentClick={this.props.onCancelInterviewAppointmentClick}
+          />
+        </div>
+        <div className={this.state.activeTabId == 1 ? '' : 'hidden'}>
+          <ScheduleCalendar
+          />
+        </div>
       </div>
     );
   }
