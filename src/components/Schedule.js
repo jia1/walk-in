@@ -17,11 +17,8 @@ import './Schedule.scss';
 class Schedule extends React.Component {
   constructor(props) {
     super(props);
-    const normSubState = utils.toNorm(this.props.store).entities;
     this.state = {
-      interviews: normSubState.interviews,
-      slots: normSubState.slots,
-      schedule: utils.sortSchedule(this.props.store.schedule, normSubState.slots)
+      userId: 1
     };
   }
 
@@ -39,9 +36,9 @@ class Schedule extends React.Component {
             </TableHead>
             <TableBody>
               {
-                this.state.schedule.map((s, i) => {
-                  const interview = this.state.interviews[s.interviewId];
-                  const slot = this.state.slots[s.slotId];
+                this.props.schedule.map((s, i) => {
+                  const interview = this.props.interviews[s.interviewId];
+                  const slot = this.props.slots[s.slotId];
                   return (
                     <TableRow key={i}>
                       <TableCell component="th" scope="row">

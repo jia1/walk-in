@@ -11,13 +11,14 @@ const formatTime = (s) => {
 };
 
 const sortSchedule = (schedule, slots) => {
-  schedule.sort((left, right) => {
+  let scheduleToSort = Object.values(schedule || []);
+  scheduleToSort.sort((left, right) => {
     if (slots[left.slotId].startDateTime <= slots[right.slotId].startDateTime) {
       return -1;
     }
     return 1;
   });
-  return schedule;
+  return scheduleToSort;
 };
 
 // Source: https://stackoverflow.com/questions/5454235

@@ -49,16 +49,17 @@ class MapWrapper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false,
       userId: 1,
       position: [1.290270, 103.851959],
-      watchId: -1
+      shouldSnackbarOpen: false,
+      snackbarTimeoutId: -1,
+      geolocationWatchId: -1
     };
   }
 
   componentDidMount() {
     if (navigator.geolocation) {
-      const watchId = navigator.geolocation.watchPosition((position) => {
+      const geolocationWatchId = navigator.geolocation.watchPosition((position) => {
         this.setState({
           position: [
             position.coords.latitude,
@@ -69,14 +70,17 @@ class MapWrapper extends React.Component {
         });
       });
       this.setState({
-        watchId
+        geolocationWatchId
       });
     }
   }
 
   componentWillUnmount() {
     if (navigator.geolocation) {
-      navigator.geolocation.clearWatch(this.state.watchId);
+      navigator.geolocation.clearWatch(this.state.geolocationWatchId);
+    }
+    if (this.state.snackbarTimeoutId) {
+      clearTimeout(this.state.snackbarTimeoutId);
     }
   }
 
@@ -88,7 +92,7 @@ class MapWrapper extends React.Component {
   }
 
   _logPosition() {
-    // console.log(this.state.position);
+    console.log(this.state.position);
   }
 
   _scheduleInterview(interview) {
@@ -99,13 +103,14 @@ class MapWrapper extends React.Component {
     );
     // Oops, no promise!
     this.setState({
-      open: true
+      shouldSnackbarOpen: true
     }, () => {
-      setTimeout(() => {
-        this.setState({
-          open: false
-        });
+      const snackbarTimeoutId = setTimeout(() => {
+        this._handleSnackbarClose();
       }, 3000);
+      this.setState({
+        snackbarTimeoutId
+      });
     });
   }
 
@@ -195,7 +200,7 @@ class MapWrapper extends React.Component {
             vertical: 'bottom',
             horizontal: 'center'
           }}
-          open={this.state.open}
+          open={this.state.shouldSnackbarOpen}
           onClose={() => {
             this._handleSnackbarClose();
           }}

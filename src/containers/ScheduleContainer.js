@@ -5,10 +5,16 @@ import {
 } from '../actions';
 import Schedule from '../components/Schedule';
 
+import utils from '../utils';
+
 const mapStateToProps = state => {
+  const normState = utils.toNorm(state).entities;
   return {
-    store: state,
-    schedule: state.schedule
+    ...normState,
+    schedule: utils.sortSchedule(
+      normState.schedule || [], // normalizr ignores empty entities -> null
+      normState.slots
+    )
   };
 }
 
