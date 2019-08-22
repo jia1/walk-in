@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 
-import { bookInterview } from '../actions';
+import {
+  makeInterviewAppointment
+} from '../actions';
 import MapWrapper from '../components/MapWrapper';
 
 const mapStateToProps = state => {
@@ -11,8 +13,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onBookInterviewClick: (interviewId, userId) => {
-      dispatch(bookInterview(interviewId, userId));
+    onMakeInterviewAppointmentClick: (interviewId, userId) => {
+      dispatch(makeInterviewAppointment(interviewId, userId));
     }
   }
 }

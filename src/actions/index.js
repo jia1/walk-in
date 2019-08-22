@@ -1,5 +1,5 @@
-export const bookInterview = (interviewId, userId) => ({
-  type: 'BOOK_INTERVIEW',
+export const makeInterviewAppointment = (interviewId, userId) => ({
+  type: 'MAKE_INTERVIEW_APPOINTMENT',
   interviewId,
   userId
 });

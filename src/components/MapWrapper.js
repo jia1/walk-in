@@ -1,6 +1,9 @@
 import React from 'react';
 import L from 'leaflet';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
+import {
+  Button
+} from '@material-ui/core';
 
 import 'leaflet/dist/leaflet.css';
 import './MapWrapper.scss';
@@ -21,7 +24,7 @@ class MapWrapper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hidden: 'hidden',
+      userId: 10,
       position: [51.505, -0.09],
       watchId: -1
     };
@@ -75,6 +78,15 @@ class MapWrapper extends React.Component {
                   <Popup>
                     <p>{interview.title}</p>
                     <p>{interview.description}</p>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={() => {
+                        this.props.onMakeInterviewAppointmentClick(interview.id, this.state.userId);
+                      }}
+                    >
+                      Make an interview appointment
+                    </Button>
                   </Popup>
                 </Marker>
               );

@@ -1,6 +1,6 @@
 const interviews = (state = [], action) => {
   switch (action.type) {
-    case 'BOOK_INTERVIEW':
+    case 'MAKE_INTERVIEW_APPOINTMENT':
       return state
     default:
       return state
