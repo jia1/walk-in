@@ -8,15 +8,15 @@ import MapWrapper from '../components/MapWrapper';
 const mapStateToProps = state => {
   return {
     interviews: state.interviews
-  }
+  };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onMakeInterviewAppointmentClick: (interviewId, userId) => {
-      dispatch(makeInterviewAppointment(interviewId, userId));
+    onMakeInterviewAppointmentClick: (interviewId, slotId, userId) => {
+      dispatch(makeInterviewAppointment(interviewId, slotId, userId));
     }
-  }
+  };
 }
 
 const MapContainer = connect(

@@ -7,10 +7,10 @@ import App from './App';
 import rootReducer from './reducers';
 import * as serviceWorker from './serviceWorker';
 
-import Interviews from './Interviews.json';
+import data from './data.json';
 import './index.css';
 
-const preloadedState = Interviews;
+const preloadedState = data;
 const store = createStore(rootReducer, preloadedState);
 
 render(

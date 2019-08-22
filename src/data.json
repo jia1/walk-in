@@ -6,20 +6,18 @@
       "longitude": 103.856917,
       "title": "Walk-in Interview 1",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quis neque ac nisl pulvinar dignissim ut id ipsum. Duis risus tellus, dictum ut porttitor mollis, sollicitudin ac dolor. Cras nunc odio, ultricies in lacus at, luctus pretium justo. Etiam varius ultricies hendrerit. Aliquam et mauris magna. Nam gravida, sem sit amet condimentum convallis, nisl nisl euismod magna, vitae tempor orci est non libero. Vivamus sed sagittis neque. Praesent luctus eros sed orci mattis ultricies. Cras eget quam eget velit rhoncus elementum ut in ligula.",
-      "expiryDateTime": -1,
-      "isHidden": false,
-      "schedule": [
+      "slots": [
         {
           "id": "1",
-          "startDateTime": 1566444479608,
-          "endDateTime": 1566444563155,
+          "startDateTime": 1566435600000,
+          "endDateTime": 1566439200000,
           "maxNumInterviewees": 1,
           "interviewees": []
         },
         {
           "id": "2",
-          "startDateTime": 1566444581266,
-          "endDateTime": 1566444587837,
+          "startDateTime": 1567040400000,
+          "endDateTime": 1567044000000,
           "maxNumInterviewees": 0,
           "interviewees": []
         }
@@ -31,46 +29,51 @@
       "longitude": 103.856117,
       "title": "Walk-in Interview 2",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quis neque ac nisl pulvinar dignissim ut id ipsum. Duis risus tellus, dictum ut porttitor mollis, sollicitudin ac dolor. Cras nunc odio, ultricies in lacus at, luctus pretium justo. Etiam varius ultricies hendrerit. Aliquam et mauris magna. Nam gravida, sem sit amet condimentum convallis, nisl nisl euismod magna, vitae tempor orci est non libero. Vivamus sed sagittis neque. Praesent luctus eros sed orci mattis ultricies. Cras eget quam eget velit rhoncus elementum ut in ligula.",
-      "expiryDateTime": 1566444587837,
-      "isHidden": false,
-      "schedule": [
+      "slots": [
         {
           "id": "3",
-          "startDateTime": 1566444756823,
-          "endDateTime": 1566444765487,
-          "maxNumInterviewees": 1,
+          "startDateTime": 1566536400000,
+          "endDateTime": 1566540000000,
+          "maxNumInterviewees": 2,
           "interviewees": [
             {
               "id": 1,
-              "firstName": "John",
-              "lastName": "Doe"
+              "firstName": "Adams",
+              "lastName": "Baker"
             },
             {
               "id": 2,
-              "firstName": "Eve",
-              "lastName": "Dropper"
+              "firstName": "Clark",
+              "lastName": "Davis"
             }
           ]
         },
         {
           "id": "4",
-          "startDateTime": 1566444772460,
-          "endDateTime": 1566444778486,
+          "startDateTime": 1566529200000,
+          "endDateTime": 1566532800000,
           "maxNumInterviewees": 3,
           "interviewees": [
             {
               "id": 3,
-              "firstName": "Indeed",
-              "lastName": "User"
+              "firstName": "Evans",
+              "lastName": "Frank"
             },
             {
               "id": 4,
-              "firstName": "Pingu",
-              "lastName": "Guin"
+              "firstName": "Ghosh",
+              "lastName": "Hills"
             }
           ]
         }
       ]
+    }
+  ],
+  "schedule": [
+    {
+      "id": 1,
+      "interviewId": 2,
+      "slotId": 3
     }
   ]
 }

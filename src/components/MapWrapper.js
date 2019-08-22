@@ -85,8 +85,8 @@ class MapWrapper extends React.Component {
                     {`${utils.truncate(interview.description, 200)}...`}
                     <p><strong>
                       {
-                        interview.schedule &&
-                        `${utils.formatDateTime(interview.schedule[0].startDateTime)} to ${utils.formatTime(interview.schedule[0].endDateTime)}`
+                        interview.slots &&
+                        `${utils.formatDateTime(interview.slots[0].startDateTime)} to ${utils.formatTime(interview.slots[0].endDateTime)}`
                       }
                     </strong></p>
                     <Grid container
@@ -112,7 +112,7 @@ class MapWrapper extends React.Component {
                           variant="contained"
                           color="primary"
                           onClick={() => {
-                            this.props.onMakeInterviewAppointmentClick(interview.id, this.state.userId);
+                            this.props.onMakeInterviewAppointmentClick(interview.id, interview.slots[0].id, this.state.userId);
                           }}
                         >
                           Make an interview appointment

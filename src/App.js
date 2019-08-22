@@ -8,7 +8,7 @@ import {
 import {
   IndexPage,
   MapPage,
-  AppointmentsPage
+  SchedulePage
 } from './pages';
 
 import {
@@ -83,9 +83,9 @@ const App = () => {
         </List>
         <Divider />
         <List>
-          <ListItem button component={Link} to="/appointments">
+          <ListItem button component={Link} to="/schedule">
             <ListItemIcon><DateRangeIcon /></ListItemIcon>
-            <ListItemText primary="Appointments" />
+            <ListItemText primary="Schedule" />
           </ListItem>
         </List>
         <Divider />
@@ -108,7 +108,7 @@ const App = () => {
         <Container maxWidth="xl">
           <Route exact path="/" component={IndexPage} />
           <Route path="/map" component={MapPage} />
-          <Route path="/appointments" component={AppointmentsPage} />
+          <Route path="/schedule" component={SchedulePage} />
           <Route path="/help" component={IndexPage} />
           <Route path="/logout" component={IndexPage} />
         </Container>

@@ -1,9 +1,9 @@
 import IndexPage from './IndexPage';
 import MapPage from './MapPage';
-import AppointmentsPage from './AppointmentsPage';
+import SchedulePage from './SchedulePage';
 
 export {
   IndexPage,
   MapPage,
-  AppointmentsPage
+  SchedulePage
 };
