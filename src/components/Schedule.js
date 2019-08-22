@@ -10,6 +10,7 @@ import {
 
 import ScheduleTable from './ScheduleTable';
 import ScheduleCalendar from './ScheduleCalendar';
+import utils from '../utils';
 
 import './Schedule.scss';
 
@@ -61,6 +62,7 @@ class Schedule extends React.Component {
         </div>
         <div className={this.state.activeTabId == 1 ? '' : 'hidden'}>
           <ScheduleCalendar
+            events={utils.scheduleToEvent(this.props.interviews, this.props.slots, this.props.schedule)}
           />
         </div>
       </div>

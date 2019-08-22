@@ -10,6 +10,23 @@ const formatTime = (s) => {
   return moment(s).format('h.mm a');
 };
 
+const scheduleToEvent = (interviews, slots, schedule) => {
+  return (schedule || []).map((schedule) => {
+    return {
+      title: interviews[schedule.interviewId].title,
+      start: new Date(slots[schedule.slotId].startDateTime),
+      end: new Date(slots[schedule.slotId].endDateTime),
+      allDay: false,
+      resource: {
+        location: [
+          interviews[schedule.interviewId].latitude,
+          interviews[schedule.interviewId].longitude
+        ]
+      }
+    };
+  });
+};
+
 const sortSchedule = (schedule, slots) => {
   let scheduleToSort = Object.values(schedule || []);
   scheduleToSort.sort((left, right) => {
@@ -30,6 +47,7 @@ const truncate = (s, n) => {
 export default {
   formatDateTime,
   formatTime,
+  scheduleToEvent,
   sortSchedule,
   toNorm,
   truncate
