@@ -1,5 +1,8 @@
 import React from 'react';
 import {
+  Link
+} from 'react-router-dom';
+import {
   Button,
   ButtonGroup,
   Paper,
@@ -11,6 +14,8 @@ import {
 } from '@material-ui/core';
 
 import utils from '../utils';
+
+import './ScheduleTable.scss';
 
 const ScheduleTable = ({
   userId,
@@ -54,7 +59,12 @@ const ScheduleTable = ({
                         color="primary"
                       >
                         <Button
-                          onClick={() => {
+                          component={Link} to={{
+                            pathname: `/schedule/${interview.id}`,
+                            state: {
+                              interviews,
+                              slots
+                            }
                           }}
                         >
                           View details

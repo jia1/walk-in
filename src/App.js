@@ -4,14 +4,6 @@ import {
   Route,
   Link
 } from 'react-router-dom';
-
-import {
-  IndexPage,
-  MapPage,
-  SchedulePage,
-  HelpPage
-} from './pages';
-
 import {
   AppBar,
   Container,
@@ -32,6 +24,15 @@ import {
   Help as HelpIcon,
   ExitToApp as ExitToAppIcon
 } from '@material-ui/icons';
+
+import {
+  IndexPage,
+  MapPage,
+  SchedulePage,
+  HelpPage
+} from './pages';
+import ScheduleDetails from './components/ScheduleDetails';
+
 import './App.scss';
 
 const App = () => {
@@ -107,7 +108,8 @@ const App = () => {
         <Container maxWidth="xl">
           <Route exact path="/" component={IndexPage} />
           <Route path="/map" component={MapPage} />
-          <Route path="/schedule" component={SchedulePage} />
+          <Route exact path="/schedule" component={SchedulePage} />
+          <Route path="/schedule/:id" component={ScheduleDetails} />
           <Route path="/help" component={HelpPage} />
           <Route path="/logout" component={IndexPage} />
         </Container>

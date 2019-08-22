@@ -2,12 +2,23 @@ import moment from 'moment';
 
 import toNorm from './norm';
 
+const capitalizeOnce = (w) => {
+  if (w) {
+    return w.charAt(0).toUpperCase() + w.slice(1);
+  }
+  return w;
+};
+
 const formatDateTime = (s) => {
   return moment(s).format('MMM Do, h.mm a');
 };
 
 const formatTime = (s) => {
   return moment(s).format('h.mm a');
+};
+
+const getDuration = (start, end) => {
+  return capitalizeOnce(moment.duration(end - start).humanize());
 };
 
 const scheduleToEvent = (interviews, slots, schedule) => {
@@ -47,6 +58,7 @@ const truncate = (s, n) => {
 export default {
   formatDateTime,
   formatTime,
+  getDuration,
   scheduleToEvent,
   sortSchedule,
   toNorm,

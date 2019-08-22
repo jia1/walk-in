@@ -5,10 +5,10 @@ import {
 } from '../actions';
 import MapWrapper from '../components/MapWrapper';
 
+import utils from '../utils';
+
 const mapStateToProps = state => {
-  return {
-    interviews: state.interviews
-  };
+  return utils.toNorm(state).entities;
 }
 
 const mapDispatchToProps = dispatch => {

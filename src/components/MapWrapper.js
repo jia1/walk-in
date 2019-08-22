@@ -1,4 +1,7 @@
 import React from 'react';
+import {
+  Link
+} from 'react-router-dom';
 import L from 'leaflet';
 import {
   Map,
@@ -9,6 +12,7 @@ import {
 } from 'react-leaflet';
 import {
   Button,
+  ButtonGroup,
   Grid,
   Snackbar,
   Typography
@@ -86,7 +90,6 @@ class MapWrapper extends React.Component {
 
   _handleSnackbarClose() {
     this.setState({
-      ...this.state,
       open: false
     });
   }
@@ -98,7 +101,7 @@ class MapWrapper extends React.Component {
   _scheduleInterview(interview) {
     this.props.onMakeInterviewAppointmentClick(
       interview.id,
-      interview.slots[0].id,
+      interview.slots[0],
       this.state.userId
     );
     // Oops, no promise!
@@ -112,9 +115,6 @@ class MapWrapper extends React.Component {
         snackbarTimeoutId
       });
     });
-  }
-
-  _showInterviewDetails(interview) {
   }
 
   render() {
@@ -139,7 +139,7 @@ class MapWrapper extends React.Component {
             </Tooltip>
           </Marker>
           {
-            this.props.interviews.map((interview) => {
+            Object.values(this.props.interviews).map((interview) => {
               return (
                 <Marker
                   key={interview.id}
@@ -153,39 +153,36 @@ class MapWrapper extends React.Component {
                     <p><strong>
                       {
                         interview.slots &&
-                        `${utils.formatDateTime(interview.slots[0].startDateTime)} to ${utils.formatTime(interview.slots[0].endDateTime)}`
+                        `${utils.formatDateTime(this.props.slots[interview.slots[0]].startDateTime)} to ${utils.formatTime(this.props.slots[interview.slots[0]].endDateTime)}`
                       }
                     </strong></p>
-                    <Grid container
-                      direction="column"
-                      justify="space-between"
-                      spacing={1}
+                    <ButtonGroup
+                      fullWidth
+                      variant="contained"
+                      color="primary"
                     >
-                      <Grid item>
-                        <Button
-                          fullWidth
-                          variant="contained"
-                          color="primary"
-                          onClick={() => {
-                            this._showInterviewDetails(interview);
-                          }}
-                        >
-                          More information / interviews
-                        </Button>
-                      </Grid>
-                      <Grid item>
-                        <Button
-                          fullWidth
-                          variant="contained"
-                          color="primary"
-                          onClick={() => {
-                            this._scheduleInterview(interview);
-                          }}
-                        >
-                          Make an interview appointment
-                        </Button>
-                      </Grid>
-                    </Grid>
+                      <Button
+                        component={Link} to={{
+                          pathname: `/schedule/${interview.id}`,
+                          state: {
+                            interviews: this.props.interviews,
+                            slots: this.props.slots
+                          }
+                        }}
+                      >
+                        More information
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          this._scheduleInterview(interview);
+                        }}
+                      >
+                        Make an appointment
+                      </Button>
+                    </ButtonGroup>
+                    <p>
+                      For more interview slots, see "More information".
+                    </p>
                   </Popup>
                   <Tooltip>
                     Interview here. Click to view.
