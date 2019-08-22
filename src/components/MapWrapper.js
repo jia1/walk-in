@@ -42,12 +42,18 @@ class MapWrapper extends React.Component {
             position.coords.latitude,
             position.coords.longitude
           ]
+        }, () => {
+          this._logPosition();
         });
       });
       this.setState({
         watchId
       });
     }
+  }
+
+  _logPosition() {
+    // console.log(this.state.position);
   }
 
   componentWillUnmount() {

@@ -46,16 +46,16 @@ const App = () => {
             justify="space-between"
           >
             <Grid item>
-              <Typography variant="h6" noWrap>
-                Wålk IN
-              </Typography>
+              <img
+                src="https://fontmeme.com/permalink/190822/08e84f1e1476f808b847b95ddc06e766.png"
+                alt="Wálk IN: Gotta schedule 'em all'"
+              />
             </Grid>
             <Grid item>
-              <div>
-                <Button color="inherit" component={Link} to="/logout">
-                  Logout
-                </Button>
-              </div>
+              <img
+                src="https://fontmeme.com/permalink/190822/2c09ea9edf0fbf369ff4dd91174b921b.png"
+                alt=""
+              />
             </Grid>
           </Grid>
         </Toolbar>
