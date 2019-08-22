@@ -1,0 +1,76 @@
+{
+  "interviews": [
+    {
+      "id": 1,
+      "latitude": 1.298889,
+      "longitude": 103.856917,
+      "title": "Walk-in Interview 1",
+      "description": "Some description",
+      "expiryDateTime": -1,
+      "isHidden": false,
+      "schedule": [
+        {
+          "id": "1",
+          "startDateTime": 1566444479608,
+          "endDateTime": 1566444563155,
+          "maxNumInterviewees": 1,
+          "interviewees": []
+        },
+        {
+          "id": "2",
+          "startDateTime": 1566444581266,
+          "endDateTime": 1566444587837,
+          "maxNumInterviewees": 0,
+          "interviewees": []
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "latitude": 1.298089,
+      "longitude": 103.856117,
+      "title": "Walk-in Interview 2",
+      "description": "Some description",
+      "expiryDateTime": 1566444587837,
+      "isHidden": false,
+      "schedule": [
+        {
+          "id": "3",
+          "startDateTime": 1566444756823,
+          "endDateTime": 1566444765487,
+          "maxNumInterviewees": 1,
+          "interviewees": [
+            {
+              "id": 1,
+              "firstName": "John",
+              "lastName": "Doe"
+            },
+            {
+              "id": 2,
+              "firstName": "Eve",
+              "lastName": "Dropper"
+            }
+          ]
+        },
+        {
+          "id": "4",
+          "startDateTime": 1566444772460,
+          "endDateTime": 1566444778486,
+          "maxNumInterviewees": 3,
+          "interviewees": [
+            {
+              "id": 3,
+              "firstName": "Indeed",
+              "lastName": "User"
+            },
+            {
+              "id": 4,
+              "firstName": "Pingu",
+              "lastName": "Guin"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

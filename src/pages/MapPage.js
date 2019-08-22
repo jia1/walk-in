@@ -1,6 +1,6 @@
 import React from 'react';
 
-import MapContainer from '../components/MapContainer';
+import MapContainer from '../containers/MapContainer';
 
 class MapPage extends React.Component {
   render() {
