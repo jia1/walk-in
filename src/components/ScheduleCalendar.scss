@@ -3,11 +3,19 @@ $color-material-primary-light: #e8eaf6;
 $color-material-primary-dark: #002984;
 
 .ScheduleCalendar {
+  .rbc-calendar {
+    height: 500px; /* FIXME */
+  }
+
+  .rbc-month-view {
+    height: auto;
+  }
+
   .rbc-day-slot .rbc-events-container {
     margin-right: 0;
   }
 
-  .rbc-day-slot .rbc-event {
+  .rbc-event {
     background-color: $color-material-primary;
   }
 
@@ -26,7 +34,7 @@ $color-material-primary-dark: #002984;
     color: white;
   }
 
-  button:focus {
+  .rbc-selected, button:focus {
     outline: 0 !important;
   }
 }

@@ -28,6 +28,8 @@ const ScheduleCalendar = ({ events }) => {
             localizer={localizer}
             events={events}
             views={[
+              'month',
+              'week',
               'work_week',
               'day'
             ]}

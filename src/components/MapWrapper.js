@@ -54,7 +54,7 @@ class MapWrapper extends React.Component {
     super(props);
     this.state = {
       userId: 1,
-      position: [1.290270, 103.851959],
+      position: [1.2959, 103.8555],
       shouldSnackbarOpen: false,
       snackbarTimeoutId: -1,
       geolocationWatchId: -1
@@ -62,6 +62,7 @@ class MapWrapper extends React.Component {
   }
 
   componentDidMount() {
+    /*
     if (navigator.geolocation) {
       const geolocationWatchId = navigator.geolocation.watchPosition((position) => {
         this.setState({
@@ -77,6 +78,7 @@ class MapWrapper extends React.Component {
         geolocationWatchId
       });
     }
+    */
   }
 
   componentWillUnmount() {
