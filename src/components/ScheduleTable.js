@@ -42,7 +42,7 @@ const ScheduleTable = ({
                 const interview = interviews[s.interviewId];
                 const slot = slots[s.slotId];
                 return (
-                  <TableRow key={i}>
+                  <TableRow key={slot.id}>
                     <TableCell component="th" scope="row">
                       {utils.formatDateTime(slot.startDateTime)}
                     </TableCell>

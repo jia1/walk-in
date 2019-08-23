@@ -7,10 +7,11 @@ const schedule = (state = [], action) => {
       if (state.find((s) => s.slotId == slotId)) {
         return state;
       }
-      return state.concat({
+      return state.concat([{
+        id: slotId, // HACK
         interviewId,
         slotId
-      });
+      }]);
     case 'CANCEL_INTERVIEW_APPOINTMENT':
       return state.filter((s, i) => s.slotId != slotId);
     default:
