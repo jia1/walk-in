@@ -21,6 +21,19 @@ const getDuration = (start, end) => {
   return capitalizeOnce(moment.duration(end - start).humanize().replace('an', '1'));
 };
 
+// Source: http://www.movable-type.co.uk/scripts/latlong.html
+const haversine = (lat1, lon1, lat2, lon2) => {
+  const R = 6371e3; // metres
+  const lat1Rad = toRad(lat1);
+  const lat2Rad = toRad(lat2);
+  const lat21Rad = toRad(lat2 - lat1);
+  const lon21Rad = toRad(lon2 - lon1);
+  const a = Math.sin(lat21Rad / 2) * Math.sin(lat21Rad / 2) + Math.cos(lat1Rad) * Math.cos(lat2Rad) * Math.sin(lon21Rad / 2) * Math.sin(lon21Rad / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const d = R * c;
+  return d;
+};
+
 const scheduleToEvent = (interviews, slots, schedule) => {
   return (schedule || []).map((schedule) => {
     return {
@@ -49,6 +62,10 @@ const sortSchedule = (schedule, slots) => {
   return scheduleToSort;
 };
 
+const toRad = (d) => {
+  return d * (Math.PI / 180);
+};
+
 // Source: https://stackoverflow.com/questions/5454235
 const truncate = (s, n) => {
   const t = s.substr(0, n);
@@ -59,6 +76,7 @@ export default {
   formatDateTime,
   formatTime,
   getDuration,
+  haversine,
   scheduleToEvent,
   sortSchedule,
   toNorm,

@@ -4,7 +4,7 @@ const schedule = (state = [], action) => {
   const slotId = action.slotId;
   switch (action.type) {
     case 'MAKE_INTERVIEW_APPOINTMENT':
-      if (state.find((s) => s.slotId == slotId)) {
+      if (state.find((s) => s.slotId === slotId)) {
         return state;
       }
       return state.concat([{
@@ -13,7 +13,7 @@ const schedule = (state = [], action) => {
         slotId
       }]);
     case 'CANCEL_INTERVIEW_APPOINTMENT':
-      return state.filter((s, i) => s.slotId != slotId);
+      return state.filter((s, i) => s.slotId !== slotId);
     default:
       return state;
   }

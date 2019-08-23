@@ -1,3 +1,4 @@
+// WARNING: <br /> HACK HERE
 import React from 'react';
 import {
   Link
@@ -10,18 +11,18 @@ import {
   CardContent,
   CardMedia,
   Grid,
-  Toolbar,
   Typography
 } from '@material-ui/core';
 
+import utils from '../utils';
+
 const Dashboard = ({ interviews, schedule }) => {
+  const position = [1.2959, 103.8555]; // HACK
   return (
     <div className="Dashboard">
       <Box pt={2}>
         <Grid container
           spacing={2}
-          alignItems="center"
-          justify="center"
         >
           <Grid item
             xs={12}
@@ -62,11 +63,14 @@ const Dashboard = ({ interviews, schedule }) => {
             <Card>
               <CardContent>
                 <Typography variant="h4">
-                  # interviews near you
+                  # nearby interview venues
                 </Typography>
                 <br />
                 <Typography variant="h2">
-                  {Object.keys(interviews || []).length}
+                  {Object.values(interviews || []).filter((interview) => {
+                    const d = utils.haversine(position[0], position[1], interview.latitude, interview.longitude);
+                    return d <= 500; // Within 500 m
+                  }).length}
                 </Typography>
               </CardContent>
               <CardActions>

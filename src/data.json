@@ -90,6 +90,15 @@
           "interviewees": []
         }
       ]
+    },
+    {
+      "id": 4,
+      "latitude": 1.3,
+      "longitude": 103.9,
+      "title": "Walk-in Interview 4",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quis neque ac nisl pulvinar dignissim ut id ipsum. Duis risus tellus, dictum ut porttitor mollis, sollicitudin ac dolor. Cras nunc odio, ultricies in lacus at, luctus pretium justo. Etiam varius ultricies hendrerit. Aliquam et mauris magna. Nam gravida, sem sit amet condimentum convallis, nisl nisl euismod magna, vitae tempor orci est non libero. Vivamus sed sagittis neque. Praesent luctus eros sed orci mattis ultricies. Cras eget quam eget velit rhoncus elementum ut in ligula.",
+      "slots": [
+      ]
     }
   ],
   "schedule": [

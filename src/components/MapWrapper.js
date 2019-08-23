@@ -13,7 +13,6 @@ import {
 import {
   Button,
   ButtonGroup,
-  Grid,
   Snackbar,
   Typography
 } from '@material-ui/core';
@@ -154,7 +153,7 @@ class MapWrapper extends React.Component {
                     {`${utils.truncate(interview.description, 200)}...`}
                     <p><strong>
                       {
-                        interview.slots &&
+                        interview.slots.length &&
                         `${utils.formatDateTime(this.props.slots[interview.slots[0]].startDateTime)} to ${utils.formatTime(this.props.slots[interview.slots[0]].endDateTime)}`
                       }
                     </strong></p>

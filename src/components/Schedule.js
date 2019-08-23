@@ -51,7 +51,7 @@ class Schedule extends React.Component {
             value={1}
           />
         </Tabs>
-        <div className={this.state.activeTabId == 0 ? '' : 'hidden'}>
+        <div className={this.state.activeTabId === 0 ? '' : 'hidden'}>
           <ScheduleTable
             userId={this.state.userId}
             interviews={this.props.interviews}
@@ -60,7 +60,7 @@ class Schedule extends React.Component {
             onCancelInterviewAppointmentClick={this.props.onCancelInterviewAppointmentClick}
           />
         </div>
-        <div className={this.state.activeTabId == 1 ? '' : 'hidden'}>
+        <div className={this.state.activeTabId === 1 ? '' : 'hidden'}>
           <ScheduleCalendar
             events={utils.scheduleToEvent(this.props.interviews, this.props.slots, this.props.schedule)}
           />
