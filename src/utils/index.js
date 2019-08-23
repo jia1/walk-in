@@ -18,7 +18,7 @@ const formatTime = (s) => {
 };
 
 const getDuration = (start, end) => {
-  return capitalizeOnce(moment.duration(end - start).humanize());
+  return capitalizeOnce(moment.duration(end - start).humanize().replace('an', '1'));
 };
 
 const scheduleToEvent = (interviews, slots, schedule) => {

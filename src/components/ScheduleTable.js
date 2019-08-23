@@ -44,7 +44,7 @@ const ScheduleTable = ({
                 return (
                   <TableRow key={slot.id}>
                     <TableCell component="th" scope="row">
-                      {utils.formatDateTime(slot.startDateTime)}
+                      {utils.formatDateTime(slot.startDateTime)} ({utils.getDuration(slot.startDateTime, slot.endDateTime)})
                     </TableCell>
                     <TableCell>
                       Blame OneMap API
